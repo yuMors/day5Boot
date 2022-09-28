@@ -1,11 +1,17 @@
 package com.day5Boot.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.day5Boot.domain.Product;
+import com.day5Boot.domain.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-@Mapper
+import java.util.List;
+
 //@Repository
-public interface ProductMapper extends BaseMapper<Product> {
+@Mapper
+public interface UserMapper extends BaseMapper<User> {
+
+    List<User> findMyUser();
+
+    List<User> findUserById(Integer id);
 }

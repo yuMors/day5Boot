@@ -4,10 +4,19 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/ssmday5?characterEncoding=utf-8&serverTimezone=UTC
+    # ipv4: 10.130.14.94 对外开放的地址 localhost 127.0.0.1 windows保留地址 ip地址：223.89.150.201
+    url: jdbc:mysql://127.0.0.1:3306/test?characterEncoding=utf-8&serverTimezone=UTC
     username: root
     password: root
 
+
+# 默认开启驼峰命名代替数据库的下划线 此处是关闭驼峰命名
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: false
+    # 打印sql
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  #mapper-locations: classpath:com/day5Boot/dao/mapper/*Mapper.xml
+  mapper-locations: classpath*:com/day5Boot/dao/mapper/*.xml
+
+

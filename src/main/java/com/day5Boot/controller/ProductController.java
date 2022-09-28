@@ -4,10 +4,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.day5Boot.controller.dto.ResponseDto;
 import com.day5Boot.dao.ProductMapper;
 import com.day5Boot.domain.Product;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -23,10 +21,45 @@ public class ProductController {
         return "hello world";
     }
 
-    @PostMapping("/list")
-    public ResponseDto<?> list(){
+    /**
+     * 查询所有
+     * @return
+     */
+    @GetMapping("/list")
+    public ResponseDto<?> listProduct(){
         QueryWrapper<Product> queryWrapper = new QueryWrapper<>();
         List<Product> products = productMapper.selectList(queryWrapper);
-        return new ResponseDto<>(true,null,products);
+        return new ResponseDto<>(true,null, products);
     }
+
+
+
+    /**
+     * 添加
+     * @return
+     */
+    @PostMapping("add")
+    public ResponseDto<?> addProduct(Product product){
+        productMapper.insert(product);
+        return new ResponseDto<>(true,null,"添加成功");
+    }
+
+    /**
+     * 删除
+     * @return
+     */
+    @PostMapping("delete")
+    public ResponseDto<?> deleteProduct(){
+        return new ResponseDto<>(true,null,null);
+    }
+
+    /**
+     * 修改
+     * @return
+     */
+    @PutMapping("put")
+    public ResponseDto<?> putProduct(){
+        return new ResponseDto<>(true,null,null);
+    }
+
 }
