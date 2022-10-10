@@ -9,4 +9,8 @@
     <select id="findUserById" resultType="com.day5Boot.domain.User">
         select * from user where id = #{id}
     </select>
+    <!--#{} 不会参与预编译 ${} 参与预编译-->
+    <select id="findUserByWrapper" resultType="com.day5Boot.domain.User">
+        select * from user ${ew.customSqlSegment}
+    </select>
 </mapper>

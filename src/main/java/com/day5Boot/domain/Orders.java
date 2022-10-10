@@ -1,5 +1,8 @@
 package com.day5Boot.domain;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.Version;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,10 +19,10 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Orders implements Serializable {
-    private static final long serialVersionUID = 814668361510739929L;
-    
-    private Long id;
+public class Orders {
+    //private static final long serialVersionUID = 814668361510739929L;
+    //
+    private Integer id;
     /**
      * 价格
      */
@@ -34,15 +37,19 @@ public class Orders implements Serializable {
     private Integer userId;
     /**
      * 更新时间
+     * 执行插入 更新操作都会调用
      */
-    private LocalDateTime updateTime;
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private String updateTime;
     /**
      * 创建时间
      */
-    private LocalDateTime createTime;
+    @TableField(fill = FieldFill.INSERT)
+    private String createTime;
     /**
      * 版本
      */
+    @Version
     private Integer version;
     /**
      * 删除逻辑标识，0-未删除，1-已删除
@@ -56,5 +63,9 @@ public class Orders implements Serializable {
      * 更新人
      */
     private String updateBy;
+    /**
+     * 加入用户表的name列
+     */
+    private String name;
 }
 

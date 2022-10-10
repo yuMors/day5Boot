@@ -1,5 +1,7 @@
 package com.day5Boot.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.day5Boot.dao.UserMapper;
 import com.day5Boot.domain.User;
 import com.day5Boot.service.UserService;
@@ -9,7 +11,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
     @Resource
     UserMapper userMapper;
@@ -23,4 +25,6 @@ public class UserServiceImpl implements UserService {
     public List<User> findUserById(Integer id) {
         return userMapper.findUserById(id);
     }
+
+
 }
